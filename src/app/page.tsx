@@ -1,7 +1,8 @@
-import Image from "next/image";
-
+"use client";
 export default function Home() {
   return (
-      <h1 className="text-center" >Firebase Integration with React</h1>
+    <>
+      <h1 className="text-center p-5 font-">Firebase Integration with React</h1>
+    </>
   );
 }
