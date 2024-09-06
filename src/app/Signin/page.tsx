@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useState } from "react";
 
 function Signin() {
-    const { email, setEmail } = useState("")
-    const { password, setPassword } = useState("")
+    const [ email, setEmail ] = useState("")
+    const [ password, setPassword]  = useState("")
     return (
         <>
             <section className="bg-gray-50 dark:bg-gray-900">
