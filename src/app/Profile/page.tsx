@@ -1,9 +1,8 @@
-
-
 function Profile() {
-    return (
-        <>
-        </>
+    return ( 
+    <>
+    This is Profile.
+    </> 
     );
 }
 
