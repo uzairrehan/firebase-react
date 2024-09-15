@@ -1,23 +1,14 @@
 "use client";
 
+import Signin from "@/app/Signin/page";
+import Signup from "@/app/Signup/page";
 import { app } from "@/firebase/firbaseconfig";
+import { AuthContextType, AuthContextProviderType, UserType } from "@/types/types";
 import { getAuth, onAuthStateChanged, sendEmailVerification } from "firebase/auth";
 import { useRouter } from "next/navigation";
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 
-type UserType = {
-    email: string | null,
-    uid: string
-}
-
-type AuthContextProviderType = {
-    children: ReactNode
-}
-
-type AuthContextType = {
-    user: UserType | null
-}
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
@@ -33,19 +24,21 @@ export function AuthContextProvider({ children }: AuthContextProviderType) {
                 const { email, uid } = loggedInUser;
                 setUser({ email, uid });
                 if (loggedInUser.emailVerified) {
-                route.push("/Profile");
+                    route.push("/Profile");
                 } else {
-                    route.push("/Verify")
-                    sendEmailVerification(auth.currentUser)
+                    route.push("/Verify");
+                    if (auth.currentUser) {
+                        sendEmailVerification(auth.currentUser);
+                    }
                 }
-            }
-            else {
+            } else {
                 console.log('inside onauthstatechange else statement');
                 setUser(null);
                 route.push("/");
             }
         });
-    }, [])
+    }, [route,Signin,Signup]);
+    
 
     return (
         <AuthContext.Provider value={{ user }} >

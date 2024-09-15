@@ -17,14 +17,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full bg-white">
-
-
       <body className={inter.className}>
         <AuthContextProvider>
-        {children}
+          {children}
         </AuthContextProvider>
-        
-        </body>
+      </body>
     </html>
   );
 }

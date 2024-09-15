@@ -1,14 +1,18 @@
 "use client";
 
+import { app } from "@/firebase/firbaseconfig";
 import { getAuth, sendEmailVerification } from "firebase/auth";
-import app from "next/app";
-const auth = getAuth();
+const auth = getAuth(app);
 
 function Verify() {
     return ( <>
-        Verify Your Account . check email
+        Check email Verify it and reload
+        <br />
+        click  here to resend
+        <br />
         <button onClick={()=>{
-            sendEmailVerification(auth.currentUser)
+            if (auth.currentUser){
+            sendEmailVerification(auth.currentUser)}
         }}>Resend</button>
     </> );
 }
