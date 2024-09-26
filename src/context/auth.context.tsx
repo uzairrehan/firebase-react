@@ -31,14 +31,15 @@ export function AuthContextProvider({ children }: AuthContextProviderType) {
                         sendEmailVerification(auth.currentUser);
                     }
                 }
-            } else {
+            } 
+            
+            else {
                 console.log('inside onauthstatechange else statement');
                 setUser(null);
                 route.push("/");
             }
         });
-    }, [route,Signin,Signup]);
-    
+    });
 
     return (
         <AuthContext.Provider value={{ user }} >
